@@ -9,6 +9,8 @@ import {DetailScreen, ThirdScreen} from "../ScreenName";
 export default class MainComponent extends React.Component {
     static navigationOptions = ({navigation}) => {
         const {params = {}} = navigation.state;
+        let header = ""; //hide toolbar
+        let headerMode = 'screen';
         let headerTitle = 'Main';
         let headerTitleColor = {color: 'red'};
         let headerRight = (
@@ -19,11 +21,9 @@ export default class MainComponent extends React.Component {
                 }}>
             Save
         </Button>
-        )
+        );
         return {
-            headerTitle,
-            headerTitleColor,
-            headerRight,
+            header
         }
     };
 

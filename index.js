@@ -16,7 +16,7 @@ const App = StackNavigator({
     },
     ThirdScreen: {
         screen: ThirdComponent,
-    }
+    },
 });
 
 AppRegistry.registerComponent('ReactNativenavigationExample', () => App);
