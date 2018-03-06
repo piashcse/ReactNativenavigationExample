@@ -1,28 +1,30 @@
 import React, {Component} from 'react';
 import {
     Text,
-    View
+    View,
+    TouchableHighlight,
+    Image,
 } from 'react-native';
 import Button from 'react-native-button';
-import {DetailScreen, ThirdScreen} from "../ScreenName";
+import {Info} from "../ScreenName";
 import Icon from 'react-native-vector-icons/Ionicons'
+import HeaderComponent from '../component/HeaderComponent';
 
 const backgroundColor = '#964f8e';
 
 export default class CloudComponent extends React.Component {
     static navigationOptions = ({navigation}) => {
-        const {params = {}} = navigation.state;
-        let tabBarLabel = 'Cloud';
-        let tabBarIcon = () => {
+        let drawableLabel = 'Cloud';
+        let drawerIcon = () => (
             <Icon
-                name='ios-cloud-outline'
-                size={24}
+                name='ios-cloud-done-outline'
+                size={26}
                 color='#964f8e'
             />
-        };
+        );
         return {
-            tabBarLabel,
-            tabBarIcon,
+            drawerIcon,
+            drawableLabel,
         }
     };
 
@@ -30,17 +32,23 @@ export default class CloudComponent extends React.Component {
         return (
             <View style={{
                 flex: 1,
-                backgroundColor: backgroundColor,
-                alignItems: 'center',
-                justifyContent: 'center',
+                flexDirection: 'column',
             }}>
-                <Text style={{
-                    fontWeight: 'bold',
-                    fontSize: 22,
-                    color: 'white',
+                <HeaderComponent {...this.props}/>
+                <View style={{
+                    flex: 1,
+                    backgroundColor: backgroundColor,
+                    alignItems: 'center',
+                    justifyContent: 'center',
                 }}>
-                    This is Cloud screen
-                </Text>
+                    <Text style={{
+                        fontWeight: 'bold',
+                        fontSize: 22,
+                        color: 'white'
+                    }}>
+                        This is cloud screen
+                    </Text>
+                </View>
             </View>
         );
     }

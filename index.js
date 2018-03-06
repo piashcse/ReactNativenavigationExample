@@ -1,18 +1,22 @@
-import {AppRegistry} from 'react-native';
-import {TabNavigator} from 'react-navigation';
+import {AppRegistry, Dimensions} from 'react-native';
+import {DrawerNavigator} from 'react-navigation';
 
-import MainComponent from './component/MainComponent';
+import HomeComponent from './component/MainComponent';
 import InfoComponent from './component/InfoComponent';
 import SettingsComponent from './component/SettingsComponent';
-import CloudComponent from './component/CloudComponent'
+import CloudComponent from './component/CloudComponent';
 
-import {Home, Cloud, Info, Settings} from "./ScreenName";
+import { Home, Info, Settings, Cloud } from "./ScreenName";
+
+var {height, width} = Dimensions.get('window');
 
 let routeConfig = {
     Home: {
-        screen: MainComponent,
+        path: '/',
+        screen: HomeComponent,
     },
     Info: {
+        path: '/info',
         screen: InfoComponent,
     },
     Settings: {
@@ -23,22 +27,19 @@ let routeConfig = {
     }
 };
 
-let tabNavigationConfig = {
-    tabBarPosition: 'bottom',
-    animationEnabled: true,
-    swipeEnabled: true,
-    tabBarOptions: {
-        activeTintColor: 'blue',
-        labelStyle: {
-            fontSize: 13,
-        },
-        style: {
-            backgroundColor: 'lightgray',
-            padding: -10,
-        }
+let drawerNavigationConfig = {
+    initialRouteName: Home,
+    drawerWidth: width / 2,
+    drawerPosition: 'left',
+    drawerOpenRoute: 'DrawerOpen',
+    drawerCloseRoute: 'DrawerClose',
+    drawerToggleRoute: 'DrawerToggle',
+    contentOptions: {
+        activeTintColor: 'red',
     }
 };
 
-const App = TabNavigator(routeConfig, tabNavigationConfig);
+const App = DrawerNavigator(routeConfig, drawerNavigationConfig);
+
 
 AppRegistry.registerComponent('ReactNativenavigationExample', () => App);

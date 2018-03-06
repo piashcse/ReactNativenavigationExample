@@ -1,26 +1,30 @@
 import React, {Component} from 'react';
 import {
     Text,
-    View
+    View,
+    TouchableHighlight,
+    Image,
 } from 'react-native';
 import Button from 'react-native-button';
-import {DetailScreen, ThirdScreen} from "../ScreenName";
+import {Info} from "../ScreenName";
 import Icon from 'react-native-vector-icons/Ionicons'
+import HeaderComponent from '../component/HeaderComponent';
 
 const backgroundColor = '#0067a7';
 
 export default class MainComponent extends React.Component {
     static navigationOptions = ({navigation}) => {
-        const {params = {}} = navigation.state;
-        let tabBarLabel = 'Home';
-        let tabBarIcon = () => {
-            <Icon
-                size={24} color='#A1A7AB' name='logo-usd'
-            />
-        };
+        let drawableLabel = 'Home';
+        let drawerIcon = () => (
+           <Icon
+                name='ios-home-outline'
+                size={26}
+                color='#0067a7'
+           />
+        );
         return {
-            tabBarLabel,
-            tabBarIcon,
+            drawerIcon,
+            drawableLabel,
         }
     };
 
@@ -28,53 +32,46 @@ export default class MainComponent extends React.Component {
         return (
             <View style={{
                 flex: 1,
-                backgroundColor: backgroundColor,
-                alignItems: 'center',
-                justifyContent: 'center',
+                flexDirection: 'column',
             }}>
-                <Text style={{
-                    fontWeight: 'bold',
-                    fontSize: 22,
-                    color: 'white'
+                <HeaderComponent {...this.props}/>
+                <View style={{
+                    flex: 1,
+                    backgroundColor: backgroundColor,
+                    alignItems: 'center',
+                    justifyContent: 'center',
                 }}>
-                    This is main screen
-                </Text>
+                    <Text style={{
+                        fontWeight: 'bold',
+                        fontSize: 22,
+                        color: 'white'
+                    }}>
+                        This is main screen
+                    </Text>
 
-                {/*<Button containerStyle={{*/}
-                    {/*padding: 10,*/}
-                    {/*margin: 20,*/}
-                    {/*width: 200,*/}
-                    {/*height: 45,*/}
-                    {/*borderRadius: 10,*/}
-                    {/*backgroundColor: 'darkviolet',*/}
-                {/*}}*/}
-                        {/*style={{*/}
-                            {/*fontSize: 18,*/}
-                            {/*color: 'white',*/}
-                        {/*}}*/}
-                        {/*onPress={() => {*/}
-                            {/*navigation.navigate(DetailScreen, dataTodetail);*/}
-                        {/*}}>*/}
-                    {/*Navigate to Detail*/}
-                {/*</Button>*/}
+                    <TouchableHighlight
+                        style={{
+                            margin: 20,
+                            width: 200,
+                            height: 45,
+                            backgroundColor: 'darkviolet',
+                            padding: 10,
+                            alignItems: 'center',
+                        }}
+                        onPress={() => {
+                            const {navigate} = this.props.navigation;
+                            navigate(Info);
+                        }}
+                    >
+                        <Text style={{
+                            color: 'white',
+                            fontSize: 18,
+                        }}>
+                            Navigate to info
+                        </Text>
 
-                {/*<Button containerStyle={{*/}
-                    {/*padding: 10,*/}
-                    {/*margin: 20,*/}
-                    {/*width: 200,*/}
-                    {/*height: 45,*/}
-                    {/*borderRadius: 10,*/}
-                    {/*backgroundColor: 'darkviolet',*/}
-                {/*}}*/}
-                        {/*style={{*/}
-                            {/*fontSize: 18,*/}
-                            {/*color: 'white',*/}
-                        {/*}}*/}
-                        {/*onPress={() => {*/}
-                            {/*navigation.navigate(ThirdScreen);*/}
-                        {/*}}>*/}
-                    {/*Navigate to third*/}
-                {/*</Button>*/}
+                    </TouchableHighlight>
+                </View>
             </View>
         );
     }
